@@ -1,22 +1,17 @@
-<form name="photo-submission"
-      method="POST"
-      data-netlify="true"
-      enctype="multipart/form-data">
+<!-- Add this inside <body> -->
+<form name="photo-submission" method="POST" data-netlify="true" enctype="multipart/form-data" class="bg-white p-6 rounded shadow-md w-full max-w-md mx-auto mt-10">
+  <h2 class="text-2xl font-bold mb-4 text-center">📷 Photo Contest Entry</h2>
 
-  <!-- Add this hidden input -->
-  <input type="hidden" name="form-name" value="photo-submission">
+  <label class="block mb-2">Your Name:</label>
+  <input type="text" name="name" class="w-full p-2 border border-gray-300 rounded mb-4" required>
 
-  <label>Your Name:<br>
-    <input type="text" name="name" required>
-  </label><br><br>
+  <label class="block mb-2">Phone Number:</label>
+  <input type="tel" name="phone" class="w-full p-2 border border-gray-300 rounded mb-4" required>
 
-  <label>Phone Number:<br>
-    <input type="tel" name="phone" pattern="[0-9]{6,15}" required>
-  </label><br><br>
+  <label class="block mb-2">Upload Your Photo:</label>
+  <input type="file" name="photo" accept="image/*" class="w-full mb-4" required>
 
-  <label>Upload Your Photo:<br>
-    <input type="file" name="photo" accept="image/*" required>
-  </label><br><br>
-
-  <button type="submit">✅ Submit Photo</button>
+  <button type="submit" class="bg-green-500 text-white w-full py-2 rounded hover:bg-green-600">
+    ✅ Submit Photo
+  </button>
 </form>
