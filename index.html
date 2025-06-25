@@ -1,46 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>NatureSnap MM</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      body {
-        font-family: sans-serif;
-        padding: 2rem;
-        max-width: 600px;
-        margin: auto;
-        background: #f0f4f8;
-      }
-      form {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      }
-      input, button {
-        width: 100%;
-        margin: 0.5rem 0;
-        padding: 0.8rem;
-        font-size: 1rem;
-      }
-    </style>
+    <title>Gallery | NatureSnap MM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <h1>📸 NatureSnap Photo Contest</h1>
-    <form name="photo-submission" method="POST" data-netlify="true" enctype="multipart/form-data">
-      <input type="hidden" name="form-name" value="photo-submission" />
-      
-      <label>Your Name:</label>
-      <input type="text" name="name" required />
+  <body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-3xl font-bold text-center mb-6">📸 Photo Gallery</h1>
 
-      <label>Phone Number:</label>
-      <input type="tel" name="phone" required />
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- Example Photo Card -->
+        <div class="bg-white rounded-lg shadow-md p-4">
+          <img src="images/photo1.jpg" alt="Sample" class="w-full h-48 object-cover rounded mb-2">
+          <p class="font-semibold">👤 Narono</p>
+          <p class="text-sm text-gray-500">📞 09-123456789</p>
+          <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mt-2">👍 Like</button>
+        </div>
 
-      <label>Upload Your Photo:</label>
-      <input type="file" name="photo" accept="image/*" required />
-
-      <button type="submit">✅ Submit Photo</button>
-    </form>
+        <!-- ဒီ Card ကိုနမူနာအနေနဲ့ Copy ကူးထပ်ထည့်နိုင်ပါတယ် -->
+      </div>
+    </div>
   </body>
 </html>
