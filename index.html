@@ -1,31 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>NatureSnap MM</title>
-  </head>
-  <body>
-    <h1>📸 Submit Your Nature Photo</h1>
+<form name="photo-submission"
+      method="POST"
+      data-netlify="true"
+      enctype="multipart/form-data">
+  <input type="hidden" name="form-name" value="photo-submission">
 
-    <form name="photo-submission"
-          method="POST"
-          data-netlify="true"
-          enctype="multipart/form-data">
-      <input type="hidden" name="form-name" value="photo-submission">
+  <label>Your Name:<br>
+    <input type="text" name="name" required>
+  </label><br><br>
 
-      <label>Your Name:<br>
-        <input type="text" name="name" required>
-      </label><br><br>
+  <label>Phone Number:<br>
+    <input type="tel" name="phone" pattern="[0-9]{6,15}" required>
+  </label><br><br>
 
-      <label>Phone Number:<br>
-        <input type="tel" name="phone" pattern="[0-9]{6,15}" required>
-      </label><br><br>
+  <label>Upload Your Photo:<br>
+    <input type="file" name="photo" accept="image/*" required>
+  </label><br><br>
 
-      <label>Upload Your Photo:<br>
-        <input type="file" name="photo" accept="image/*" required>
-      </label><br><br>
-
-      <button type="submit">✅ Submit Photo</button>
-    </form>
-  </body>
-</html>
+  <button type="submit">✅ Submit Photo</button>
+</form>
