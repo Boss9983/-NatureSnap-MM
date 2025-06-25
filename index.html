@@ -1,17 +1,16 @@
-<!-- Add this inside <body> -->
-<form name="photo-submission" method="POST" data-netlify="true" enctype="multipart/form-data" class="bg-white p-6 rounded shadow-md w-full max-w-md mx-auto mt-10">
-  <h2 class="text-2xl font-bold mb-4 text-center">📷 Photo Contest Entry</h2>
+<form name="photo-submission" method="POST" data-netlify="true" enctype="multipart/form-data" class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-md mx-auto mt-10">
+  <h2 class="text-3xl font-bold text-center text-green-700 mb-6">🌿 NatureSnap Contest Entry</h2>
 
-  <label class="block mb-2">Your Name:</label>
-  <input type="text" name="name" class="w-full p-2 border border-gray-300 rounded mb-4" required>
+  <label class="block text-gray-700 mb-1 font-semibold">👤 Your Name:</label>
+  <input type="text" name="name" placeholder="Enter your name" class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-500" required>
 
-  <label class="block mb-2">Phone Number:</label>
-  <input type="tel" name="phone" class="w-full p-2 border border-gray-300 rounded mb-4" required>
+  <label class="block text-gray-700 mb-1 font-semibold">📞 Phone Number:</label>
+  <input type="tel" name="phone" placeholder="09xxxxxxxxx" class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-500" required>
 
-  <label class="block mb-2">Upload Your Photo:</label>
-  <input type="file" name="photo" accept="image/*" class="w-full mb-4" required>
+  <label class="block text-gray-700 mb-1 font-semibold">📸 Upload Your Photo:</label>
+  <input type="file" name="photo" accept="image/*" class="w-full p-2 border border-gray-300 rounded-lg mb-6 bg-gray-50" required>
 
-  <button type="submit" class="bg-green-500 text-white w-full py-2 rounded hover:bg-green-600">
+  <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow">
     ✅ Submit Photo
   </button>
 </form>
