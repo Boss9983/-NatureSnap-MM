@@ -1,1 +1,14 @@
-<input type="hidden" name="form-name" value="photo-submission">
+<form name="photo-submission" method="POST" data-netlify="true" enctype="multipart/form-data">
+  <input type="hidden" name="form-name" value="photo-submission">
+
+  <label for="name">Your Name:</label>
+  <input type="text" id="name" name="name" required><br><br>
+
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="phone" required><br><br>
+
+  <label for="photo">Upload Your Photo:</label>
+  <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
+
+  <button type="submit">✅ Submit Photo</button>
+</form>
