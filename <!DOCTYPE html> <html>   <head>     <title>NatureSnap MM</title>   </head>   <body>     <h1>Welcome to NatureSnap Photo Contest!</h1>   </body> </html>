@@ -1,24 +1,32 @@
+<!-- index.html – this goes in the repo ROOT -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>NatureSnap MM</title>
-  </head>
-  <body>
-    <h1>📸 Submit Your Nature Photo</h1>
+<head>
+  <meta charset="utf-8" />
+  <title>NatureSnap MM</title>
+</head>
+<body>
+  <h1>📸 Submit Your Nature Photo</h1>
 
-    <form name="photo-submission" method="POST" data-netlify="true" enctype="multipart/form-data">
-      <input type="hidden" name="form-name" value="photo-submission">
+  <form name="photo-submission"
+        method="POST"
+        data-netlify="true"
+        enctype="multipart/form-data">
+    <input type="hidden" name="form-name" value="photo-submission" />
 
-      <label for="name">Your Name:</label><br>
-      <input type="text" id="name" name="name" required><br><br>
+    <label>Your Name:
+      <input type="text" name="name" required>
+    </label><br><br>
 
-      <label for="phone">Phone Number:</label><br>
-      <input type="tel" id="phone" name="phone" pattern="[0-9]{6,15}" required><br><br>
+    <label>Phone Number:
+      <input type="tel" name="phone" pattern="[0-9]{6,15}" required>
+    </label><br><br>
 
-      <label for="photo">Upload Your Photo:</label><br>
-      <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
+    <label>Upload Your Photo:
+      <input type="file" name="photo" accept="image/*" required>
+    </label><br><br>
 
-      <button type="submit">✅ Submit Photo</button>
-    </form>
-  </body>
+    <button type="submit">✅ Submit Photo</button>
+  </form>
+</body>
 </html>
