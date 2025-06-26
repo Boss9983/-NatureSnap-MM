@@ -1,6 +1,21 @@
-<form name="photo-submission" method="POST" data-netlify="true" enctype="multipart/form-data">
-  <input type="text" name="Your Name" placeholder="Your Name" required />
-  <input type="text" name="Phone Number" placeholder="Phone Number" required />
-  <input type="file" name="Upload Your Photo" accept="image/*" required />
-  <button type="submit">✅ Submit Photo</button>
-</form>
+<section id="gallery">
+  <h2>📸 Photo Gallery</h2>
+  <div id="gallery-container"></div>
+</section>
+
+<script>
+  fetch("/.netlify/functions/get-submissions")
+    .then(res => res.json())
+    .then(data => {
+      const gallery = document.getElementById("gallery-container");
+      data.forEach(entry => {
+        const card = document.createElement("div");
+        card.innerHTML = `
+          <img src="${entry.photo}" width="200" />
+          <p>👤 ${entry.name}</p>
+          <p>📞 ${entry.phone}</p>
+        `;
+        gallery.appendChild(card);
+      });
+    });
+</script>
