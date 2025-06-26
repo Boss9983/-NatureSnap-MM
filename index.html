@@ -1,56 +1,90 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Dashboard - NatureSnap MM</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>NatureSnap MM - Admin Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f5f8fa;
+    }
+    h1 {
+      color: #2c5282;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background: #ebf4ff;
+    }
+    .winner {
+      background-color: #d4edda;
+    }
+    .mark-btn {
+      background: #3182ce;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <header class="bg-green-600 text-white py-4 shadow">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold">📸 NatureSnap MM - Admin Panel</h1>
-      <span class="text-sm">Logged in as Admin</span>
-    </div>
-  </header>  <main class="container mx-auto px-4 py-6">
-    <section class="mb-6">
-      <h2 class="text-lg font-semibold mb-2">📋 Submissions</h2>
-      <div class="overflow-auto bg-white rounded shadow p-4">
-        <table class="min-w-full text-sm">
-          <thead>
-            <tr>
-              <th class="text-left px-4 py-2">👤 Name</th>
-              <th class="text-left px-4 py-2">📞 Phone</th>
-              <th class="text-left px-4 py-2">🖼️ Photo</th>
-              <th class="text-left px-4 py-2">👍 Likes</th>
-              <th class="text-left px-4 py-2">🏆 Winner</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Sample Row -->
-            <tr class="border-t">
-              <td class="px-4 py-2">Narono</td>
-              <td class="px-4 py-2">09-123456789</td>
-              <td class="px-4 py-2">
-                <img src="/uploads/narono.jpg" alt="Narono Photo" class="h-16 rounded" />
-              </td>
-              <td class="px-4 py-2">35</td>
-              <td class="px-4 py-2">
-                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">Mark Winner</button>
-              </td>
-            </tr>
-            <!-- Repeat for each submission -->
-          </tbody>
-        </table>
-      </div>
-    </section><section>
-  <h2 class="text-lg font-semibold mb-2">🏆 Winner Announcement</h2>
-  <div class="bg-white p-4 shadow rounded">
-    <p class="text-green-700 font-bold">Winner: Narono</p>
-    <p class="text-gray-600">Contact: 09-123456789</p>
-    <img src="/uploads/narono.jpg" alt="Winner Photo" class="mt-2 h-32 rounded shadow" />
-  </div>
-</section>
+<body>
+  <h1>📸 NatureSnap MM - Admin Panel</h1>
+  <p>Logged in as <strong>Admin</strong></p>
 
-  </main>
+  <h2>📋 Submissions</h2>
+  <table id="submission-table">
+    <tr>
+      <th>👤 Name</th>
+      <th>📞 Phone</th>
+      <th>🖼️ Photo</th>
+      <th>👍 Likes</th>
+      <th>🏆 Winner</th>
+    </tr>
+    <tr>
+      <td>Narono</td>
+      <td>09-123456789</td>
+      <td><img src="gallery/narono.jpg" alt="Narono" width="80"></td>
+      <td>35</td>
+      <td><button class="mark-btn" onclick="markWinner(this)">Mark Winner</button></td>
+    </tr>
+  </table>
+
+  <h2>🏆 Winner Announcement</h2>
+  <div id="winner-info">
+    <p>Winner: <span id="winner-name">-</span></p>
+    <p>Contact: <span id="winner-phone">-</span></p>
+    <p><img id="winner-photo" src="" width="100" style="display:none;"></p>
+  </div>
+
+  <script>
+    function markWinner(btn) {
+      const row = btn.closest('tr');
+      const name = row.cells[0].innerText;
+      const phone = row.cells[1].innerText;
+      const img = row.cells[2].querySelector('img').src;
+
+      row.classList.add("winner");
+      document.getElementById('winner-name').innerText = name;
+      document.getElementById('winner-phone').innerText = phone;
+      const winnerPhoto = document.getElementById('winner-photo');
+      winnerPhoto.src = img;
+      winnerPhoto.style.display = "block";
+      btn.remove();
+    }
+  </script>
 </body>
 </html>
