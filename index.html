@@ -1,22 +1,6 @@
-// /.netlify/functions/get-submissions.js
-exports.handler = async () => {
-  const FORM_ID = process.env.FORM_ID        // Netlify env var
-  const TOKEN   = process.env.ACCESS_TOKEN   // Netlify env var
-
-  const url = `https://api.netlify.com/api/v1/forms/${FORM_ID}/submissions`
-
-  // Netlify v18+ ရှိရင် fetch builtin ပါလိုက်ပြီ ⇒ node-fetch မလိုတော့
-  const res = await fetch(url, {
-    headers: { Authorization: `Bearer ${TOKEN}` }
-  })
-
-  const subs = await res.json()
-
-  const data = subs.map(s => ({
-    name :  s.data.name  || s.data["Your Name"],
-    phone:  s.data.phone || s.data["Phone Number"],
-    photo:  s.data.photo ? s.data.photo[0].url : ""
-  }))
-
-  return { statusCode: 200, body: JSON.stringify(data) }
-}
+<form name="photo-submission" method="POST" data-netlify="true" enctype="multipart/form-data">
+  <input type="text" name="Your Name" placeholder="Your Name" required />
+  <input type="text" name="Phone Number" placeholder="Phone Number" required />
+  <input type="file" name="Upload Your Photo" accept="image/*" required />
+  <button type="submit">✅ Submit Photo</button>
+</form>
