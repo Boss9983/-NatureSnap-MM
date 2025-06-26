@@ -1,17 +1,23 @@
-fetch("/.netlify/functions/get-submissions")
-  .then(res => res.json())
-  .then(data => {
-    const gallery = document.getElementById("gallery")
-    data.forEach(user => {
-      const card = document.createElement("div")
-      card.innerHTML = `
-        <div class="card">
-          <img src="${user.photo}" alt="Photo of ${user.name}" />
-          <h3>👤 ${user.name}</h3>
-          <p>📞 ${user.phone}</p>
-          <p>👍 Likes: 0</p>
-        </div>
-      `
-      gallery.appendChild(card)
+<script>
+  fetch("/.netlify/functions/get-submissions")
+    .then(res => res.json())
+    .then(data => {
+      const gallery = document.getElementById("gallery");
+      data.forEach(user => {
+        const card = document.createElement("div");
+        card.className = "photo-card";
+        card.innerHTML = `
+          <div style="border: 1px solid #ccc; padding: 1rem; border-radius: 10px; margin: 1rem; max-width: 300px;">
+            <img src="${user.photo}" alt="Photo of ${user.name}" style="width: 100%; height: auto; border-radius: 8px;" />
+            <h3>👤 ${user.name}</h3>
+            <p>📞 ${user.phone}</p>
+            <p>👍 Likes: 0</p>
+          </div>
+        `;
+        gallery.appendChild(card);
+      });
     })
-  })
+    .catch(err => {
+      console.error("Error loading submissions:", err);
+    });
+</script>
