@@ -1,2 +1,25 @@
-[functions]
-  directory = "netlify/functions"
+exports.handler = async () => {
+  const FORM_ID = process.env.FORM_ID;
+  const TOKEN = process.env.ACCESS_TOKEN;
+
+  const url = `https://api.netlify.com/api/v1/forms/${FORM_ID}/submissions`;
+
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${TOKEN}`
+    }
+  });
+
+  const subs = await res.json();
+
+  const data = subs.map(s => ({
+    name: s.data["Your Name"],
+    phone: s.data["Phone Number"],
+    photo: s.data["Upload Your Photo"]?.[0]?.url || ""
+  }));
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(data)
+  };
+};
