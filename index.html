@@ -1,90 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NatureSnap MM - Admin Panel</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background: #f5f8fa;
-    }
-    h1 {
-      color: #2c5282;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      background: white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 12px;
-      text-align: left;
-    }
-    th {
-      background: #ebf4ff;
-    }
-    .winner {
-      background-color: #d4edda;
-    }
-    .mark-btn {
-      background: #3182ce;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-  </style>
-</head>
-<body>
-  <h1>📸 NatureSnap MM - Admin Panel</h1>
-  <p>Logged in as <strong>Admin</strong></p>
+<div id="gallery"></div>
 
-  <h2>📋 Submissions</h2>
-  <table id="submission-table">
-    <tr>
-      <th>👤 Name</th>
-      <th>📞 Phone</th>
-      <th>🖼️ Photo</th>
-      <th>👍 Likes</th>
-      <th>🏆 Winner</th>
-    </tr>
-    <tr>
-      <td>Narono</td>
-      <td>09-123456789</td>
-      <td><img src="gallery/narono.jpg" alt="Narono" width="80"></td>
-      <td>35</td>
-      <td><button class="mark-btn" onclick="markWinner(this)">Mark Winner</button></td>
-    </tr>
-  </table>
-
-  <h2>🏆 Winner Announcement</h2>
-  <div id="winner-info">
-    <p>Winner: <span id="winner-name">-</span></p>
-    <p>Contact: <span id="winner-phone">-</span></p>
-    <p><img id="winner-photo" src="" width="100" style="display:none;"></p>
-  </div>
-
-  <script>
-    function markWinner(btn) {
-      const row = btn.closest('tr');
-      const name = row.cells[0].innerText;
-      const phone = row.cells[1].innerText;
-      const img = row.cells[2].querySelector('img').src;
-
-      row.classList.add("winner");
-      document.getElementById('winner-name').innerText = name;
-      document.getElementById('winner-phone').innerText = phone;
-      const winnerPhoto = document.getElementById('winner-photo');
-      winnerPhoto.src = img;
-      winnerPhoto.style.display = "block";
-      btn.remove();
-    }
-  </script>
-</body>
-</html>
+<script>
+  fetch("/.netlify/functions/get-submissions")
+    .then(res => res.json())
+    .then(data => {
+      const gallery = document.getElementById("gallery");
+      data.forEach(entry => {
+        const card = `
+          <div class="card">
+            <img src="${entry.photo}" alt="photo">
+            <h3>${entry.name}</h3>
+            <p>${entry.phone}</p>
+          </div>
+        `;
+        gallery.innerHTML += card;
+      });
+    });
+</script>
