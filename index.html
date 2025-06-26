@@ -2,46 +2,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NatureSnap MM - Submit</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Admin Dashboard - NatureSnap MM</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gradient-to-b from-green-50 to-green-200 min-h-screen text-gray-800">
-  <!-- Navbar -->
-  <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-green-700">🌿 NatureSnap MM</h1>
-    <nav>
-      <ul class="flex space-x-6 font-medium">
-        <li><a href="#submit" class="text-green-700 hover:text-green-900">Submit</a></li>
-        <li><a href="#gallery" class="text-green-700 hover:text-green-900">Gallery</a></li>
-        <li><a href="#winner" class="text-green-700 hover:text-green-900">Winner</a></li>
-      </ul>
-    </nav>
-  </header>  <!-- Hero Section -->  <section class="text-center py-12 px-4">
-    <h2 class="text-4xl font-extrabold text-green-800">Join Our Monthly Photo Contest 📸</h2>
-    <p class="mt-2 text-lg text-green-600">Submit your best nature shot and win exciting prizes!</p>
-  </section>  <!-- Form Section -->  <section id="submit" class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-lg">
-    <h3 class="text-2xl font-semibold text-center text-green-700 mb-6">Submit Your Photo</h3>
-    <form name="photo-submission" method="POST" data-netlify="true" enctype="multipart/form-data">
-      <input type="hidden" name="form-name" value="photo-submission" /><label class="block mb-4">
-    <span class="text-gray-700">Your Name</span>
-    <input type="text" name="name" required class="mt-1 block w-full rounded border-gray-300 shadow-sm focus:ring focus:ring-green-300" />
-  </label>
+<body class="bg-gray-100 text-gray-800">
+  <header class="bg-green-600 text-white py-4 shadow">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">📸 NatureSnap MM - Admin Panel</h1>
+      <span class="text-sm">Logged in as Admin</span>
+    </div>
+  </header>  <main class="container mx-auto px-4 py-6">
+    <section class="mb-6">
+      <h2 class="text-lg font-semibold mb-2">📋 Submissions</h2>
+      <div class="overflow-auto bg-white rounded shadow p-4">
+        <table class="min-w-full text-sm">
+          <thead>
+            <tr>
+              <th class="text-left px-4 py-2">👤 Name</th>
+              <th class="text-left px-4 py-2">📞 Phone</th>
+              <th class="text-left px-4 py-2">🖼️ Photo</th>
+              <th class="text-left px-4 py-2">👍 Likes</th>
+              <th class="text-left px-4 py-2">🏆 Winner</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Sample Row -->
+            <tr class="border-t">
+              <td class="px-4 py-2">Narono</td>
+              <td class="px-4 py-2">09-123456789</td>
+              <td class="px-4 py-2">
+                <img src="/uploads/narono.jpg" alt="Narono Photo" class="h-16 rounded" />
+              </td>
+              <td class="px-4 py-2">35</td>
+              <td class="px-4 py-2">
+                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">Mark Winner</button>
+              </td>
+            </tr>
+            <!-- Repeat for each submission -->
+          </tbody>
+        </table>
+      </div>
+    </section><section>
+  <h2 class="text-lg font-semibold mb-2">🏆 Winner Announcement</h2>
+  <div class="bg-white p-4 shadow rounded">
+    <p class="text-green-700 font-bold">Winner: Narono</p>
+    <p class="text-gray-600">Contact: 09-123456789</p>
+    <img src="/uploads/narono.jpg" alt="Winner Photo" class="mt-2 h-32 rounded shadow" />
+  </div>
+</section>
 
-  <label class="block mb-4">
-    <span class="text-gray-700">Phone Number</span>
-    <input type="text" name="phone" required class="mt-1 block w-full rounded border-gray-300 shadow-sm focus:ring focus:ring-green-300" />
-  </label>
-
-  <label class="block mb-6">
-    <span class="text-gray-700">Upload Your Photo</span>
-    <input type="file" name="photo" accept="image/*" required class="mt-1 block w-full" />
-  </label>
-
-  <button type="submit" class="w-full py-2 px-4 bg-green-600 text-white font-bold rounded hover:bg-green-700 transition">✅ Submit Photo</button>
-</form>
-
-  </section>  <!-- Footer -->  <footer class="text-center py-6 text-sm text-green-800 mt-10">
-    &copy; 2025 NatureSnap MM. All rights reserved.
-  </footer>
+  </main>
 </body>
 </html>
