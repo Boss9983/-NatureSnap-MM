@@ -1,23 +1,22 @@
-// get-submissions.js
-const fetch = require('node-fetch');
+// /.netlify/functions/get-submissions.js
+exports.handler = async () => {
+  const FORM_ID = process.env.FORM_ID        // Netlify env var
+  const TOKEN   = process.env.ACCESS_TOKEN   // Netlify env var
 
-exports.handler = async function(event, context) {
-  const response = await fetch("https://api.netlify.com/api/v1/forms/<your-form-id>/submissions", {
-    headers: {
-      "Authorization": "Bearer <your-access-token>"
-    }
-  });
+  const url = `https://api.netlify.com/api/v1/forms/${FORM_ID}/submissions`
 
-  const submissions = await response.json();
+  // Netlify v18+ ရှိရင် fetch builtin ပါလိုက်ပြီ ⇒ node-fetch မလိုတော့
+  const res = await fetch(url, {
+    headers: { Authorization: `Bearer ${TOKEN}` }
+  })
 
-  const formatted = submissions.map(sub => ({
-    name: sub.data["Your Name"],
-    phone: sub.data["Phone Number"],
-    photo: sub.data["Upload Your Photo"][0].url
-  }));
+  const subs = await res.json()
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(formatted)
-  };
-};
+  const data = subs.map(s => ({
+    name :  s.data.name  || s.data["Your Name"],
+    phone:  s.data.phone || s.data["Phone Number"],
+    photo:  s.data.photo ? s.data.photo[0].url : ""
+  }))
+
+  return { statusCode: 200, body: JSON.stringify(data) }
+}
